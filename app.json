@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "MNC Customer",
+    "slug": "mnc-customer-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.mnc.customerapp"
+    },
+    "android": {
+      "package": "com.mnc.customerapp",
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "CAMERA"
+      ]
+    },
+    "plugins": [
+      "expo-font",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you upload complaint images.",
+          "cameraPermission": "The app uses your camera to capture complaint images."
+        }
+      ]
+    ]
+  }
+}
