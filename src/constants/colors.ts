@@ -1,51 +1,52 @@
 export const Colors = {
-  primary: "#2563EB",
-  primaryDark: "#1D4ED8",
-  primaryLight: "#EFF6FF",
-  secondary: "#10B981",
-  secondaryDark: "#059669",
-  secondaryLight: "#ECFDF5",
+  // TDP Party Colors — AP Government
+  primary: "#F5C518", // TDP Golden Yellow
+  primaryDark: "#C58A00", // Dark Gold
+  primaryLight: "#FFF8DC", // Corn Silk
+  secondary: "#1A3654", // TDP Navy Blue
+  secondaryDark: "#102540",
+  secondaryLight: "#E8F0FE",
   error: "#EF4444",
   errorLight: "#FEF2F2",
-  warning: "#F59E0B",
-  warningLight: "#FFFBEB",
-  info: "#3B82F6",
+  warning: "#D97706",
+  warningLight: "#FEF3C7",
+  info: "#1A56DB",
   infoLight: "#EFF6FF",
   success: "#10B981",
   successLight: "#ECFDF5",
 
-  background: "#F8FAFC",
-  backgroundDark: "#0F172A",
+  background: "#FFFDF5",
+  backgroundDark: "#1A2535",
   surface: "#FFFFFF",
-  surfaceDark: "#1E293B",
+  surfaceDark: "#1A2535",
   surfaceElevated: "#FFFFFF",
 
-  text: "#1E293B",
+  text: "#1A2535",
   textSecondary: "#64748B",
   textTertiary: "#94A3B8",
   textInverse: "#FFFFFF",
-  textDark: "#F1F5F9",
+  textDark: "#FFF8DC",
 
-  border: "#E2E8F0",
-  borderDark: "#334155",
-  divider: "#F1F5F9",
+  border: "#F0E6B0",
+  borderDark: "#2A3545",
+  divider: "#FFF3B0",
 
   cardBg: "#FFFFFF",
-  cardShadow: "rgba(15, 23, 42, 0.08)",
+  cardShadow: "rgba(197, 138, 0, 0.12)",
 
   overlay: "rgba(0, 0, 0, 0.5)",
   glassBg: "rgba(255, 255, 255, 0.85)",
-  glassBorder: "rgba(255, 255, 255, 0.3)",
+  glassBorder: "rgba(255, 248, 220, 0.4)",
 
   status: {
-    submitted: "#F59E0B",
-    assigned: "#3B82F6",
-    in_progress: "#8B5CF6",
+    submitted: "#D97706",
+    assigned: "#1A56DB",
+    in_progress: "#7C3AED",
     completed: "#10B981",
     cancelled: "#EF4444",
   },
   statusBg: {
-    submitted: "#FFFBEB",
+    submitted: "#FEF3C7",
     assigned: "#EFF6FF",
     in_progress: "#F5F3FF",
     completed: "#ECFDF5",
@@ -54,17 +55,17 @@ export const Colors = {
 
   issueType: {
     road_damage: "#EF4444",
-    garbage: "#F59E0B",
-    drainage: "#3B82F6",
-    street_light: "#8B5CF6",
+    garbage: "#D97706",
+    drainage: "#1A56DB",
+    street_light: "#7C3AED",
   },
 
   gradient: {
-    primary: ["#2563EB", "#1D4ED8"] as [string, string],
+    primary: ["#FFE566", "#F5C518"] as [string, string],
     secondary: ["#10B981", "#059669"] as [string, string],
-    hero: ["#2563EB", "#7C3AED"] as [string, string],
-    card: ["#FFFFFF", "#F8FAFC"] as [string, string],
-    dark: ["#1E293B", "#0F172A"] as [string, string],
+    hero: ["#F5C518", "#C58A00"] as [string, string],
+    card: ["#FFFDF5", "#FFF8DC"] as [string, string],
+    dark: ["#1A2535", "#0F1A28"] as [string, string],
   },
 };
 

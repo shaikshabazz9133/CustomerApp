@@ -7,6 +7,7 @@ import {
   RefreshControl,
   TouchableOpacity,
   StatusBar,
+  Image,
 } from "react-native";
 import Animated, {
   useSharedValue,
@@ -16,6 +17,190 @@ import Animated, {
 } from "react-native-reanimated";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
+
+// ── Government Leaders Banner ─────────────────────────────────────
+const GovernmentBanner: React.FC = () => (
+  <LinearGradient
+    colors={["#1A3654", "#C58A00", "#F5C518"]}
+    start={{ x: 0, y: 0 }}
+    end={{ x: 1, y: 0 }}
+    style={bannerStyles.govtBanner}
+  >
+    <View style={bannerStyles.govtHeader}>
+      <View style={bannerStyles.tdpBadge}>
+        <Text style={bannerStyles.tdpText}>TDP</Text>
+      </View>
+      <Text style={bannerStyles.govtTitle}>Government of Andhra Pradesh</Text>
+    </View>
+    <View style={bannerStyles.leadersRow}>
+      <View style={bannerStyles.leaderCard}>
+        <Image
+          source={require("../../../assets/images/cm.png")}
+          style={bannerStyles.leaderPhoto}
+          resizeMode="cover"
+        />
+        <View style={[bannerStyles.rolePill, { backgroundColor: "#F5C518" }]}>
+          <Text style={[bannerStyles.rolePillText, { color: "#1A3654" }]}>
+            CM
+          </Text>
+        </View>
+        <Text style={bannerStyles.leaderName}>N. Chandrababu Naidu</Text>
+        <Text style={bannerStyles.leaderTitle}>Chief Minister</Text>
+      </View>
+      <View style={bannerStyles.verticalDivider} />
+      <View style={bannerStyles.leaderCard}>
+        <Image
+          source={require("../../../assets/images/deputy_cm.png")}
+          style={bannerStyles.leaderPhoto}
+          resizeMode="cover"
+        />
+        <View style={[bannerStyles.rolePill, { backgroundColor: "#1A3654" }]}>
+          <Text style={bannerStyles.rolePillText}>Dy.CM</Text>
+        </View>
+        <Text style={bannerStyles.leaderName}>Pawan Kalyan</Text>
+        <Text style={bannerStyles.leaderTitle}>Deputy Chief Minister</Text>
+      </View>
+    </View>
+  </LinearGradient>
+);
+
+// ── Ward Corporator Card ─────────────────────────────────────────
+const CorporatorCard: React.FC<{ wardNumber?: number }> = ({ wardNumber }) => (
+  <View style={bannerStyles.corpCard}>
+    <LinearGradient
+      colors={["#1A3654", "#1A3654"]}
+      style={bannerStyles.corpAccent}
+    />
+    <Image
+      source={require("../../../assets/images/corporator.png")}
+      style={bannerStyles.corpPhoto}
+      resizeMode="cover"
+    />
+    <View style={bannerStyles.corpInfo}>
+      <View style={bannerStyles.corpBadge}>
+        <Ionicons name="location" size={12} color="#F5C518" />
+        <Text style={bannerStyles.corpBadgeText}>
+          Ward {wardNumber ?? "47"} Representative
+        </Text>
+      </View>
+      <Text style={bannerStyles.corpName}>Ramakrishna</Text>
+      <Text style={bannerStyles.corpTitle}>47th Ward Corporator</Text>
+      <Text style={bannerStyles.corpParty}>Telugu Desam Party</Text>
+    </View>
+  </View>
+);
+
+const bannerStyles = StyleSheet.create({
+  govtBanner: {
+    borderRadius: 16,
+    padding: 14,
+    marginBottom: 14,
+    shadowColor: "rgba(197,138,0,0.3)",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 1,
+    shadowRadius: 10,
+    elevation: 5,
+  },
+  govtHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    marginBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: "rgba(255,255,255,0.25)",
+    paddingBottom: 10,
+  },
+  tdpBadge: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 6,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+  },
+  tdpText: {
+    fontSize: 13,
+    fontWeight: "900",
+    color: "#1A3654",
+    letterSpacing: 1.5,
+  },
+  govtTitle: { fontSize: 13, fontWeight: "700", color: "#FFFFFF", flex: 1 },
+  leadersRow: { flexDirection: "row", justifyContent: "space-around" },
+  leaderCard: { alignItems: "center", flex: 1 },
+  leaderPhoto: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    borderWidth: 3,
+    borderColor: "#F5C518",
+    marginBottom: 6,
+  },
+  rolePill: {
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    marginBottom: 6,
+  },
+  rolePillText: { fontSize: 10, fontWeight: "900", color: "#FFFFFF" },
+  leaderName: {
+    fontSize: 12,
+    fontWeight: "700",
+    color: "#FFFFFF",
+    textAlign: "center",
+  },
+  leaderTitle: {
+    fontSize: 10,
+    color: "rgba(255,255,255,0.75)",
+    textAlign: "center",
+    marginTop: 2,
+  },
+  verticalDivider: {
+    width: 1,
+    backgroundColor: "rgba(255,255,255,0.25)",
+    marginHorizontal: 8,
+  },
+  // Corporator Card
+  corpCard: {
+    flexDirection: "row",
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    marginBottom: 14,
+    overflow: "hidden",
+    shadowColor: "rgba(197,138,0,0.2)",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 1,
+    shadowRadius: 10,
+    elevation: 4,
+    borderWidth: 1,
+    borderColor: "#F0E6B0",
+  },
+  corpAccent: { width: 6 },
+  corpPhoto: {
+    width: 90,
+    height: 110,
+    borderRadius: 0,
+  },
+  corpInfo: { flex: 1, padding: 12, justifyContent: "center" },
+  corpBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
+    backgroundColor: "#FFF8DC",
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    alignSelf: "flex-start",
+    marginBottom: 6,
+  },
+  corpBadgeText: { fontSize: 10, fontWeight: "600", color: "#C58A00" },
+  corpName: {
+    fontSize: 17,
+    fontWeight: "800",
+    color: "#1A2535",
+    marginBottom: 2,
+  },
+  corpTitle: { fontSize: 12, color: "#64748B", marginBottom: 2 },
+  corpParty: { fontSize: 11, fontWeight: "700", color: "#C58A00" },
+});
+
 import { useAuthStore } from "../../store/authStore";
 import { useComplaintStore } from "../../store/complaintStore";
 import { useNotificationStore } from "../../store/notificationStore";
@@ -136,6 +321,16 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
           />
         }
       >
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>Your Government</Text>
+        </View>
+        <GovernmentBanner />
+
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>Your Ward Representative</Text>
+        </View>
+        <CorporatorCard wardNumber={customer?.wardNumber} />
+
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Recent Complaints</Text>
           <TouchableOpacity
