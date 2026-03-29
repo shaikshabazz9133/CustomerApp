@@ -11,6 +11,7 @@ import {
   Alert,
   StatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import { useAuthStore } from "../../store/authStore";
@@ -38,95 +39,99 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : undefined}
-    >
+    <SafeAreaView style={styles.safeArea} edges={["top"]}>
       <StatusBar
         barStyle="light-content"
         backgroundColor="transparent"
         translucent
       />
-      <LinearGradient colors={Colors.gradient.hero} style={styles.hero}>
-        <View style={styles.heroContent}>
-          <View style={styles.heroIcon}>
-            <Text style={{ fontSize: 36 }}>🏛️</Text>
-          </View>
-          <Text style={styles.heroTitle}>Welcome to NMC</Text>
-          <Text style={styles.heroSub}>Nellore Municipal Corporation</Text>
-        </View>
-        <View style={styles.wave} />
-      </LinearGradient>
-
-      <ScrollView
-        style={styles.formContainer}
-        contentContainerStyle={styles.form}
-        keyboardShouldPersistTaps="handled"
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
-        <Text style={styles.title}>Login with Mobile</Text>
-        <Text style={styles.subtitle}>
-          We'll send a one-time password to verify your number
-        </Text>
-
-        <View style={styles.phoneInput}>
-          <View style={styles.countryCode}>
-            <Text style={styles.flag}>🇮🇳</Text>
-            <Text style={styles.code}>+91</Text>
+        <LinearGradient colors={Colors.gradient.hero} style={styles.hero}>
+          <View style={styles.heroContent}>
+            <View style={styles.heroIcon}>
+              <Text style={{ fontSize: 36 }}>🏛️</Text>
+            </View>
+            <Text style={styles.heroTitle}>Welcome to NMC</Text>
+            <Text style={styles.heroSub}>Nellore Municipal Corporation</Text>
           </View>
-          <TextInput
-            style={styles.input}
-            placeholder="10-digit mobile number"
-            placeholderTextColor={Colors.textTertiary}
-            keyboardType="phone-pad"
-            maxLength={10}
-            value={phone}
-            onChangeText={setPhone}
-            returnKeyType="done"
-            onSubmitEditing={handleSendOTP}
-          />
-        </View>
+          <View style={styles.wave} />
+        </LinearGradient>
 
-        {error && (
-          <View style={styles.errorBox}>
-            <Ionicons name="alert-circle" size={16} color={Colors.error} />
-            <Text style={styles.errorText}>{error}</Text>
-          </View>
-        )}
-
-        <Button
-          title={isLoading ? "Sending OTP..." : "Send OTP"}
-          onPress={handleSendOTP}
-          loading={isLoading}
-          disabled={phone.length < 10}
-          style={styles.submitBtn}
-        />
-
-        <View style={styles.demoBox}>
-          <Ionicons
-            name="information-circle-outline"
-            size={16}
-            color={Colors.primary}
-          />
-          <Text style={styles.demoText}>
-            Demo: Use any valid 10-digit number. OTP: any 4 digits
+        <ScrollView
+          style={styles.formContainer}
+          contentContainerStyle={styles.form}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
+          <Text style={styles.title}>Login with Mobile</Text>
+          <Text style={styles.subtitle}>
+            We'll send a one-time password to verify your number
           </Text>
-        </View>
 
-        <View style={styles.termsRow}>
-          <Text style={styles.termsText}>By continuing, you agree to our </Text>
-          <TouchableOpacity>
-            <Text style={styles.termsLink}>Terms & Privacy Policy</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+          <View style={styles.phoneInput}>
+            <View style={styles.countryCode}>
+              <Text style={styles.flag}>🇮🇳</Text>
+              <Text style={styles.code}>+91</Text>
+            </View>
+            <TextInput
+              style={styles.input}
+              placeholder="10-digit mobile number"
+              placeholderTextColor={Colors.textTertiary}
+              keyboardType="phone-pad"
+              maxLength={10}
+              value={phone}
+              onChangeText={setPhone}
+              returnKeyType="done"
+              onSubmitEditing={handleSendOTP}
+            />
+          </View>
+
+          {error && (
+            <View style={styles.errorBox}>
+              <Ionicons name="alert-circle" size={16} color={Colors.error} />
+              <Text style={styles.errorText}>{error}</Text>
+            </View>
+          )}
+
+          <Button
+            title={isLoading ? "Sending OTP..." : "Send OTP"}
+            onPress={handleSendOTP}
+            loading={isLoading}
+            disabled={phone.length < 10}
+            style={styles.submitBtn}
+          />
+
+          <View style={styles.demoBox}>
+            <Ionicons
+              name="information-circle-outline"
+              size={16}
+              color={Colors.primary}
+            />
+            <Text style={styles.demoText}>
+              Demo: Use any valid 10-digit number. OTP: any 4 digits
+            </Text>
+          </View>
+
+          <View style={styles.termsRow}>
+            <Text style={styles.termsText}>By continuing, you agree to our </Text>
+            <TouchableOpacity>
+              <Text style={styles.termsLink}>Terms & Privacy Policy</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safeArea: { flex: 1, backgroundColor: Colors.gradient.hero[0] as string },
   container: { flex: 1, backgroundColor: Colors.background },
   hero: {
-    paddingTop: 60,
+    paddingTop: 32,
     paddingBottom: 60,
     alignItems: "center",
   },
@@ -157,14 +162,14 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
   },
-  formContainer: {
-    flex: 1,
-    backgroundColor: Colors.background,
-    marginTop: -1,
-  },
+  formContainer: { flex: 1, backgroundColor: Colors.background },
   form: {
-    padding: Spacing.lg,
+    paddingHorizontal: Spacing.lg,
     paddingTop: Spacing.xl,
+    paddingBottom: Spacing.xl,
+    maxWidth: 500,
+    width: "100%",
+    alignSelf: "center",
   },
   title: {
     fontSize: FontSize.xxl,
@@ -187,6 +192,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.surface,
     marginBottom: Spacing.md,
     height: 54,
+    overflow: "hidden",
   },
   countryCode: {
     flexDirection: "row",
@@ -196,6 +202,7 @@ const styles = StyleSheet.create({
     borderRightColor: Colors.border,
     gap: 6,
     height: "100%",
+    backgroundColor: Colors.surface,
   },
   flag: { fontSize: 20 },
   code: { fontSize: FontSize.md, fontWeight: "600", color: Colors.text },
@@ -205,6 +212,7 @@ const styles = StyleSheet.create({
     color: Colors.text,
     paddingHorizontal: 14,
     letterSpacing: 2,
+    height: "100%",
   },
   errorBox: {
     flexDirection: "row",

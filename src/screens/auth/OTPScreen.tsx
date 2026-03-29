@@ -10,6 +10,7 @@ import {
   Alert,
   StatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -95,6 +96,7 @@ const OTPScreen: React.FC<OTPScreenProps> = ({ navigation, route }) => {
   const maskedPhone = `${phoneNumber.slice(0, 2)}XXXXXX${phoneNumber.slice(-2)}`;
 
   return (
+    <SafeAreaView style={styles.safeArea} edges={["top"]}>
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === "ios" ? "padding" : undefined}
@@ -177,17 +179,22 @@ const OTPScreen: React.FC<OTPScreenProps> = ({ navigation, route }) => {
         </View>
       </View>
     </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safeArea: { flex: 1, backgroundColor: Colors.background },
   container: { flex: 1, backgroundColor: Colors.background },
-  back: { position: "absolute", top: 52, left: 20, zIndex: 10, padding: 8 },
+  back: { position: "absolute", top: 12, left: 20, zIndex: 10, padding: 8 },
   content: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: Spacing.xl,
+    maxWidth: 500,
+    width: "100%",
+    alignSelf: "center",
   },
   iconCircle: {
     width: 80,

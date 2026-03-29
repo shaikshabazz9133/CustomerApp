@@ -8,6 +8,7 @@ import {
   Alert,
   StatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import { useAuthStore } from "../../store/authStore";
@@ -76,6 +77,7 @@ const ProfileScreen: React.FC = () => {
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
+        <SafeAreaView edges={["top"]} style={styles.headerSafeArea}>
         <LinearGradient colors={Colors.gradient.hero} style={styles.header}>
           <View style={styles.avatarCircle}>
             <Ionicons name="person" size={40} color="#fff" />
@@ -88,6 +90,7 @@ const ProfileScreen: React.FC = () => {
           </View>
           <View style={styles.wave} />
         </LinearGradient>
+        </SafeAreaView>
 
         {/* Stats */}
         <View style={styles.statsRow}>
@@ -171,7 +174,7 @@ const ProfileScreen: React.FC = () => {
           />
         </View>
 
-        <View style={{ height: 40 }} />
+        <View style={{ height: 100 }} />
       </ScrollView>
     </View>
   );
@@ -179,8 +182,9 @@ const ProfileScreen: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Colors.background },
+  headerSafeArea: { backgroundColor: Colors.gradient.hero[0] as string },
   header: {
-    paddingTop: 60,
+    paddingTop: 16,
     paddingBottom: 60,
     alignItems: "center",
   },

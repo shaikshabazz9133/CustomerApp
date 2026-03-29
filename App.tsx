@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import * as SplashScreen from "expo-splash-screen";
 import { PaperProvider, MD3LightTheme } from "react-native-paper";
 import AppNavigator from "./src/navigation/AppNavigator";
+import { navigationRef } from "./src/navigation/navigationRef";
 import Colors from "./src/constants/colors";
 
 SplashScreen.preventAutoHideAsync();
@@ -27,7 +28,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <PaperProvider theme={theme}>
-        <NavigationContainer onReady={onLayoutRootView}>
+        <NavigationContainer ref={navigationRef} onReady={onLayoutRootView}>
           <AppNavigator />
           <StatusBar style="auto" />
         </NavigationContainer>
